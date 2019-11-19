@@ -9,6 +9,6 @@ services:
    environment:
       - REACT_APP_ALGOLIA_ID=$REACT_APP_ALGOLIA_ID
       - REACT_APP_ADMIN_API_KEY=$REACT_APP_ADMIN_API_KEY
-    command: sh -c "npm start && echo $$REACT_APP_ALGOLIA_ID && echo $$REACT_APP_ADMIN_API_KEY"
+    command: sh -c "npm install && npm start && echo $$REACT_APP_ALGOLIA_ID && echo $$REACT_APP_ADMIN_API_KEY"
     ports:
      - "3000:3000"
