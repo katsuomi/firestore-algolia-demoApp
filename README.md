@@ -39,10 +39,7 @@ cd firestore-algolia-demoApp
 $ docker-compose build
 
 # Dockerコンテナの起動
-$ docker-compose up -d
-
-# 確認
-$ docker-compose ps
+$ docker-compose up 
 ```
 
 下記のコンテナが起動していれば、OKです。
