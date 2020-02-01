@@ -11,10 +11,10 @@ This repository is for [【Firebase】AlgoliaでFirestoreの全文検索機能�
 
 ||Name|Version|What|
 |:-:|:-:|:-:|:-|
-|frontend|JavaScript||高級言語|
-||npm|6.7.0|パッケージ管理システム|
-||React.js|16.11.0|JavaScriptライブラリ|
-||firesotre||データベース|
+|frontend|JavaScript||High-level languages|
+||npm|6.7.0|	Package management system|
+||React.js|16.11.0|JavaScript Library|
+||firesotre||database|
 
 ## 🔰 Install & Setup
 
