@@ -1,5 +1,4 @@
-import firebase from 'firebase';
-
+import firebase from "firebase";
 
 const config = {
   apiKey: "****************",
@@ -9,7 +8,7 @@ const config = {
   storageBucket: "****************.appspot.com",
   messagingSenderId: "****************",
   appId: "****************"
-}
+};
 
 firebase.initializeApp(config);
 
