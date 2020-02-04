@@ -19,7 +19,7 @@ const App = () => {
     let tempResults = [];
     db.collection("posts")
       .get()
-      .then(function(querySnapshot) {
+      .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
           tempResults.push({
             title: doc.data().title,
