@@ -1,24 +1,29 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
+import React from "react";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const textFieldStyle = {
   display: "flex",
-  width: "100%",
-}
+  width: "100%"
+};
 
 const contactForm = {
   display: "flex",
-  flexDirection: "column", 
-  alignItems: "center",
-}
+  flexDirection: "column",
+  alignItems: "center"
+};
 
-
-const SubmitPostComponent = (props) => (
+const SubmitPostComponent = props => (
   <React.Fragment>
     <div style={contactForm}>
       <form onSubmit={props.onSubmit}>
-        <TextField name="title" label="タイトル" type="text" required style={textFieldStyle} />
+        <TextField
+          name="title"
+          label="タイトル"
+          type="text"
+          required
+          style={textFieldStyle}
+        />
         <TextField
           style={textFieldStyle}
           required
@@ -29,7 +34,13 @@ const SubmitPostComponent = (props) => (
           margin="normal"
           variant="outlined"
         />
-        <Button variant="contained" color="primary" type="submit" name="submit" style={textFieldStyle}>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          name="submit"
+          style={textFieldStyle}
+        >
           送信
         </Button>
       </form>
@@ -37,5 +48,4 @@ const SubmitPostComponent = (props) => (
   </React.Fragment>
 );
 
-
-export default SubmitPostComponent
+export default SubmitPostComponent;
