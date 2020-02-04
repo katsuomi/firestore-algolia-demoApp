@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import SubmitPostComponent from "./components/SubmitPostComponent";
 import AllPostsComponent from "./components/AllPostsComponent";
@@ -12,37 +12,12 @@ const client = algoliasearch(
 );
 const index = client.initIndex("Practice");
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.ReadPosts = this.ReadPosts.bind(this);
-    this.onSearch = this.onSearch.bind(this);
-    this.state = {
-      posts: [],
-      searchResultPosts: []
-    };
-  }
-
-  componentDidMount() {
-    this.ReadPosts();
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-    let data = { title: e.target.title.value, content: e.target.content.value };
-    db.collection("posts")
-      .doc()
-      .set(data);
-    e.target.title.value = "";
-    e.target.content.value = "";
-    this.ReadPosts();
-  }
-
-  async ReadPosts() {
+const App = () => {
+  const [posts, setPosts] = useState([]);
+  const [searchResultPosts, setSearchResultPosts] = useState([]);
+  useEffect(() => {
     let tempResults = [];
-    await db
-      .collection("posts")
+    db.collection("posts")
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -52,40 +27,50 @@ class App extends Component {
           });
         });
       });
-    this.setState({ posts: tempResults });
-  }
+    setPosts(tempResults);
+  }, []);
 
-  async onSearch(e) {
+  const onSubmit = e => {
+    e.preventDefault();
+    let data = { title: e.target.title.value, content: e.target.content.value };
+    db.collection("posts")
+      .doc()
+      .set(data);
+    e.target.title.value = "";
+    e.target.content.value = "";
+    setPosts(state => [...state, data]);
+  };
+
+  const onSearch = e => {
     let tempResults = [];
-    await index
+    index
       .search({
         query: e.target.value
       })
       .then(function(responses) {
         tempResults = responses.hits;
       });
+    setSearchResultPosts(tempResults);
+  };
 
-    this.setState({ searchResultPosts: tempResults });
-  }
-
-  render() {
-    return (
+  return (
+    <>
       <Grid container>
         <Grid item xs={12} sm={12} md={4}>
-          <SubmitPostComponent onSubmit={this.onSubmit} />
+          <SubmitPostComponent onSubmit={onSubmit} />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <AllPostsComponent posts={this.state.posts} />
+          <AllPostsComponent posts={posts} />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <SearchPostsComponent
-            onSearch={this.onSearch}
-            searchResultPosts={this.state.searchResultPosts}
+            onSearch={onSearch}
+            searchResultPosts={searchResultPosts}
           />
         </Grid>
       </Grid>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default App;

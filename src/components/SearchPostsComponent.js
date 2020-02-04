@@ -15,7 +15,7 @@ const SearchPostsComponent = props => (
     <div style={allPostsStyle}>
       <Input
         name="keyword"
-        label="全文検索"
+        label="indexSearch"
         type="text"
         onChange={props.onSearch}
         style={{ width: "250px", marginTop: "10px" }}

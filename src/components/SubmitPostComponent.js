@@ -19,7 +19,7 @@ const SubmitPostComponent = props => (
       <form onSubmit={props.onSubmit}>
         <TextField
           name="title"
-          label="タイトル"
+          label="title"
           type="text"
           required
           style={textFieldStyle}
@@ -28,7 +28,7 @@ const SubmitPostComponent = props => (
           style={textFieldStyle}
           required
           name="content"
-          label="内容"
+          label="content"
           multiline
           rows="4"
           margin="normal"
@@ -41,7 +41,7 @@ const SubmitPostComponent = props => (
           name="submit"
           style={textFieldStyle}
         >
-          送信
+          Submit
         </Button>
       </form>
     </div>
