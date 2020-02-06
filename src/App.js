@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import SubmitPostComponent from "./components/SubmitPostComponent";
 import AllPostsComponent from "./components/AllPostsComponent";
@@ -30,7 +30,7 @@ const App = () => {
     setPosts(tempResults);
   }, []);
 
-  const onSubmit = e => {
+  const onSubmit = useCallback(e => {
     e.preventDefault();
     let data = { title: e.target.title.value, content: e.target.content.value };
     db.collection("posts")
@@ -39,9 +39,9 @@ const App = () => {
     e.target.title.value = "";
     e.target.content.value = "";
     setPosts(state => [...state, data]);
-  };
+  }, []);
 
-  const onSearch = e => {
+  const onSearch = useCallback(e => {
     let tempResults = [];
     index
       .search({
@@ -51,7 +51,7 @@ const App = () => {
         tempResults = responses.hits;
       });
     setSearchResultPosts(tempResults);
-  };
+  }, []);
 
   return (
     <>
